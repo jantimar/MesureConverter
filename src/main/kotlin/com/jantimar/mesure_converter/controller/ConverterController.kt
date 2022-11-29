@@ -3,10 +3,7 @@ package com.jantimar.mesure_converter.controller
 import com.jantimar.mesure_converter.entity.Currency
 import com.jantimar.mesure_converter.entity.Item
 import com.jantimar.mesure_converter.entity.Price
-import com.jantimar.mesure_converter.service.ItemRepository
-import com.jantimar.mesure_converter.service.MesureConverter
-import com.jantimar.mesure_converter.service.PriceConverter
-import com.jantimar.mesure_converter.service.PriceRepository
+import com.jantimar.mesure_converter.service.*
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.ui.set
@@ -18,8 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam
 final class ConverterController(
     private val mesureService: MesureConverter,
     private val priceService: PriceConverter,
-    private val itemRepository: ItemRepository,
-    private val priceRepository: PriceRepository
+    private val itemService: ItemService
 ) {
 
     @GetMapping("/")
@@ -40,14 +36,12 @@ final class ConverterController(
     ): String {
         // Save new item
         val item = Item(name, amount, price, Currency.currency(currency))
-        priceRepository.save(item.price)
-        itemRepository.save(item)
-
+        itemService.save(item)
         return index(model)
     }
 
-    private fun historicalItems() = itemRepository
-        .findAllByOrderByAddedAtDesc()
+    private fun historicalItems() = itemService
+        .all()
         .map { item ->
             val universalItem = mesureService.universalItem(item)
             val prices = Currency.all().map { priceService.convert(universalItem.price, it) }
