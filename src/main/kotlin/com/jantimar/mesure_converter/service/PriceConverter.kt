@@ -1,4 +1,4 @@
-package com.jantimar.mesure_converter
+package com.jantimar.mesure_converter.service
 
 import com.jantimar.mesure_converter.entity.Currency
 import com.jantimar.mesure_converter.entity.Price
