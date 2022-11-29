@@ -1,3 +1,9 @@
 package com.jantimar.mesure_converter.entity
 
-data class Price(val value: Double, val currency: Currency)
+import javax.persistence.*
+
+@Entity
+data class Price(
+    val value: Double,
+    @ManyToOne val currency: Currency,
+    @Id @GeneratedValue var id: Long? = null)
