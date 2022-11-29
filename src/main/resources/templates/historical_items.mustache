@@ -1,0 +1,15 @@
+<div class="table-wrapper">
+    <table class="fl-table">
+        <tbody>
+        {{#items}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{original.value}} {{original.shortcut}} ({{amount}} g/ml)</td>
+                {{#prices}}
+                    <td>{{value}} {{shortcut}}</td>
+                {{/prices}}
+            </tr>
+        {{/items}}
+        </tbody>
+    </table>
+</div>

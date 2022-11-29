@@ -1,17 +1,13 @@
 <form action="convert" method="post">
-<!--    <label for="amount">Amount:</label>-->
-    <input type="text" id="amount" name="amount">
-    <label for="amount">g/ml</label><br><br>
-<!--    <label for="price">Price:</label>-->
-    <input type="text" id="price" name="price">
-    <select name="fromCurrency" id="fromCurrency">
-        <option value="MYR">MYR</option>
-        <option value="CZK">CZK</option>
-    </select><br><br>
-    <label for="toCurrency">To</label>
-    <select name="toCurrency" id="toCurrency">
-        <option value="CZK">CZK</option>
-        <option value="MYR">MYR</option>
-    </select>
-    <input type="submit" value="Submit">
+    <div align="center">
+        <div class="wrap", align="left">
+            <input type="text" width="100%" id="rcorners2" name="name" placeholder="Name">
+            <input type="text" id="rcorners2" name="amount" placeholder="1000">
+            <label for="amount">g/ml</label><br>
+            <input type="text" id="rcorners2" name="price" placeholder="Price">
+            <select name="currency" id="currency"> {{> currency_options}}
+            </select><br><br>
+            <input class="button-18" type="submit" value="Submit">
+    </div>
+</div>
 </form>
